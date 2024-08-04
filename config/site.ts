@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "BrianBlog",
   url: "https://brianblog.vercel.app",
   description: "Brian's Blog",
-  author: "Brian",
+  author: "Brian Wang",
   links: {
     twitter: "",
     github: "",
@@ -10,4 +10,4 @@ export const siteConfig = {
   },
 };
 
-export type siteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig
