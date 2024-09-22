@@ -5,7 +5,7 @@ export const siteConfig = {
   author: "Brian Wang",
   links: {
     twitter: "",
-    github: "",
+    github: "https://github.com/Brian-Wang0926/",
     personalSite: "",
   },
 };
