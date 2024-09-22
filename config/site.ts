@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "BrianBlog",
-  url: "https://brianblog.vercel.app",
+  url: "https://my-first-blog-one.vercel.app",
   description: "Brian's Blog",
   author: "Brian Wang",
   links: {
