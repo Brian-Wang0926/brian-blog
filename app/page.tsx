@@ -44,7 +44,7 @@ export default function Home() {
           Latest Posts
         </h2>
       </section>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col px-10">
         {latestPosts.map((post) => (
           <li key={post.slug} className="first:border-t first:border-border">
             <PostItem

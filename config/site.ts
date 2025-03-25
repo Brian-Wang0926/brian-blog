@@ -4,8 +4,9 @@ export const siteConfig = {
   description: "Brian's Blog",
   author: "Brian Wang",
   links: {
-    twitter: "",
+
     github: "https://github.com/Brian-Wang0926/",
+    instagram: "",
     personalSite: "",
   },
 };

@@ -29,8 +29,9 @@ export function SiteHeader() {
                 <span className="sr-only">Github</span>
               </div>
             </Link>
+
             <Link
-              href={siteConfig.links.twitter}
+              href={siteConfig.links.instagram}
               target="_blank"
               rel="noreferrer"
             >
@@ -40,8 +41,8 @@ export function SiteHeader() {
                   "w-10 px-0 hidden sm:inline-flex"
                 )}
               >
-                <Icons.twitter className="h-4 w-4" />
-                <span className="sr-only">twitter</span>
+                <Icons.instagram className="h-4 w-4" />
+                <span className="sr-only">instagram</span>
               </div>
             </Link>
             <ModeToggle />
