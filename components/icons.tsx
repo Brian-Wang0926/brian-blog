@@ -17,7 +17,6 @@ export const Icons = {
       <circle cx="5" cy="19" r="1" />
     </svg>
   ),
-
   github: (props: IconProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

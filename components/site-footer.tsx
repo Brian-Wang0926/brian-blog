@@ -10,7 +10,7 @@ export function SiteFooter() {
           <a
             target="_blank"
             rel="noreferrer"
-            href="mailto:aa0988402763@gmail.com"
+            href={`mailto:${siteConfig.email}`}
           >
             <span className="sr-only">Mail</span>
             <Mail className="h-6 w-6"></Mail>
@@ -25,7 +25,6 @@ export function SiteFooter() {
             <Icons.instagram className="h-6 w-6" />
           </a>
         </div>
-
       </div>
     </footer>
   );
