@@ -105,13 +105,14 @@ export default function AboutPage() {
         .a4-container {
           width: 210mm;
           max-width: 100%;
-          padding: 8mm;
+          padding: 6mm;
           box-sizing: border-box;
         }
 
         @media screen and (max-width: 210mm) {
           .a4-container {
             width: 100%;
+            padding: 0;
           }
         }
       `}</style>
