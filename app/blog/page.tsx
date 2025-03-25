@@ -3,6 +3,7 @@ import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import { sortPosts } from "@/lib/utils";
 import { Metadata } from "next";
+import { TagFilter } from "@/components/tag-filter";
 
 export const metadata: Metadata = {
   title: "My Blog",
@@ -14,11 +15,36 @@ const POSTS_PER_PAGE = 5;
 interface BlogPageProps {
   searchParams: {
     page?: string;
+    tags?: string;
   };
 }
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const currentPage = Number(searchParams.page) || 1;
-  const sortedPosts = sortPosts(posts.filter((post) => post.published));
+
+  // 處理多重標籤
+  const selectedTags = searchParams.tags ? searchParams.tags.split(",") : [];
+  const isAllSelected = selectedTags.length === 0;
+
+  // 收集所有標籤
+  const allTags = new Set<string>();
+  
+  posts.forEach((post) => {
+    if (post.published && post.tags) {
+      post.tags.forEach((tag) => allTags.add(tag));
+    }
+  });
+  const sortedTags = Array.from(allTags).sort();
+
+  // 篩選文章
+  let filteredPosts = posts.filter((post) => post.published);
+  if (!isAllSelected) {
+    filteredPosts = filteredPosts.filter((post) =>
+      // 確保文章包含所有選中的標籤
+      selectedTags.every((tag) => post.tags?.includes(tag))
+    );
+  }
+
+  const sortedPosts = sortPosts(filteredPosts);
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 
   const displayPosts = sortedPosts.slice(
@@ -36,13 +62,19 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           </p>
         </div>
       </div>
+
+      {/* 標籤篩選 */}
+      <div className="mt-8">
+        <TagFilter allTags={sortedTags} />
+      </div>
+
       <div className="grid grid-cols-12 gap-3 mt-8">
         <div className="col-span-12 col-start-1">
           <hr className="mt-8" />
           {displayPosts?.length > 0 ? (
             <ul className="flex flex-col">
               {displayPosts.map((post) => {
-                const { slug, title, description, date } = post;
+                const { slug, title, description, date, tags } = post;
                 return (
                   <li key={slug}>
                     <PostItem
@@ -50,6 +82,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                       title={title}
                       description={description}
                       date={date}
+                      tags={tags}
                     />
                   </li>
                 );
@@ -61,6 +94,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <QueryPagination
             totalPages={totalPages}
             className="justify-end mt-4"
+            additionalParams={
+              !isAllSelected ? { tags: selectedTags.join(",") } : {}
+            }
           />{" "}
         </div>
       </div>

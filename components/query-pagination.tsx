@@ -13,11 +13,13 @@ import {
 interface QueryPaginationProps {
   totalPages: number;
   className?: string;
+  additionalParams?: Record<string, string>;
 }
 
 export function QueryPagination({
   totalPages,
   className,
+  additionalParams = {},
 }: QueryPaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -30,6 +32,12 @@ export function QueryPagination({
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
+
+    // 添加額外參數
+    Object.entries(additionalParams).forEach(([key, value]) => {
+      params.set(key, value);
+    });
+
     return `${pathname}?${params.toString()}`;
   };
 

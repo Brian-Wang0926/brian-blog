@@ -2,7 +2,8 @@ import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-components";
 import { notFound } from "next/navigation";
 import { formateDate } from "@/lib/utils";
-
+import Link from "next/link";
+import { Tag } from "lucide-react";
 
 import "@/style/mdx.css";
 import { Metadata } from "next";
@@ -73,9 +74,27 @@ export default async function PostPage({ params }: PostPageProps) {
     <article className="container py-6 prose dark:prose-invert max-w-3xl mx-auto">
       <h1 className="mb-2">{post.title}</h1>
       {post.description ? (
-        <p className="text-s mb-2 mt-0 text-muted-foreground">{post.description}</p>
+        <p className="text-s mb-2 mt-0 text-muted-foreground">
+          {post.description}
+        </p>
       ) : null}
       <p className="mt-0 ">{formateDate(post.date)}</p>
+
+      {/* 添加標籤顯示 */}
+      {post.tags && post.tags.length > 0 && (
+        <div className="flex gap-2 flex-wrap mt-2 not-prose">
+          {post.tags.map((tag) => (
+            <Link
+              key={tag}
+              href={`/tags/${encodeURIComponent(tag)}`}
+              className="flex items-center gap-1 text-sm bg-muted px-2 py-1 rounded-md hover:bg-muted/80"
+            >
+              <Tag className="h-3 w-3" />
+              {tag}
+            </Link>
+          ))}
+        </div>
+      )}
       <hr className="my-4" />
       <MDXContent code={post.body} />
     </article>
