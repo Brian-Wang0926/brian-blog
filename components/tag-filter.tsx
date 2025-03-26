@@ -45,14 +45,14 @@ export function TagFilter({ allTags }: TagFilterProps) {
   };
 
   return (
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div className="flex flex-wrap gap-1 mb-2 ">
       <button
         onClick={() => handleTagClick("all")}
         className={cn(
-          "px-3 py-1 rounded-md text-sm",
+          "px-3 py-0.5 rounded-md text-sm ",
           isAllSelected
             ? "bg-primary text-primary-foreground"
-            : "bg-muted hover:bg-muted/80"
+            : "bg-muted hover:bg-muted/80 bg-gray-200 dark:bg-gray-600"
         )}
       >
         全部
@@ -63,10 +63,10 @@ export function TagFilter({ allTags }: TagFilterProps) {
           key={tag}
           onClick={() => handleTagClick(tag)}
           className={cn(
-            "px-3 py-1 rounded-md text-sm",
+            "px-3 py-0.5 rounded-md text-sm ",
             selectedTags.includes(tag)
               ? "bg-primary text-primary-foreground"
-              : "bg-muted hover:bg-muted/80"
+              : "bg-muted hover:bg-muted/80 bg-gray-200 dark:bg-gray-600"
           )}
         >
           {tag}

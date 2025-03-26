@@ -64,11 +64,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       </div>
 
       {/* 標籤篩選 */}
-      <div className="mt-8">
+      <div className="mt-6">
         <TagFilter allTags={sortedTags} />
       </div>
 
-      <div className="grid grid-cols-12 gap-3 mt-8">
+      <div className="grid grid-cols-12 gap-3 mt-4">
         <div className="col-span-12 col-start-1">
           <hr className="mt-8" />
           {displayPosts?.length > 0 ? (
