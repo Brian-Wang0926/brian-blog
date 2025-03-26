@@ -15,7 +15,7 @@ export default function ResumeContentZH({ Badge }: ResumeContentZHProps) {
         <article className="space-y-4">
           <div>
             <div className="flex gap-x-4 items-center">
-              <h1 className="text-xl sm:text-3xl font-bold">Brian Wang</h1>
+              <h1 className="text-xl sm:text-3xl font-bold">BO-YUAN WANG</h1>
               <h2 className="text-sm sm:text-xl text-gray-600 dark:text-gray-400">
                 Full-Stack Engineer
               </h2>
